@@ -1,0 +1,44 @@
+{%extends 'base.html' %}
+
+{%block content%}
+
+<div class="container">
+    {% include 'nave.html' %}
+
+    <div>
+        <hr>
+        <br>
+    <a href="{{url_for('cadastrarAtividade')}}" class="btn btn-info">Cadastrar Atividade</a>
+    <div class="row mt-4">
+
+        
+
+        <div class="col-md-6 mt-4">
+            <p><strong>Turma:</strong> {{turmass.nome_turma}}</p> 
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nome</th>
+
+                </tr>
+            </thead>
+            <body>
+                {% for linha in postsComentarios %}
+                <tr>
+                    <td>{{linha.id}}</td>
+                    <td>{{linha.nome_atividade}}</td>   
+                </tr>
+                {% endfor %}
+    
+            </body>
+        </table>
+    </div>
+
+</div>
+    {% endblock %}
+
+</div>
+

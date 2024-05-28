@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+
+    {% include 'nave.html' %}
+    <hr>
+    <div>
+        
+        {% if current_user.is_authenticated %}
+        
+        
+        <a href="{{url_for('cadastrarTurma')}}" class="btn btn-info">Cadastrar turma</a>
+        <hr>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Número</th>
+                    <th>Nome</th>
+                    <th>Ação</th>
+                    <th>ㅤ</th>
+
+                </tr>
+            </thead>
+            <body>
+                {% for linha in turmass %}
+                <tr>
+                    <td>{{linha.id}}</td>
+                    <td>{{linha.nome_turma}}</td>
+                    <td><a href="{{url_for('excluirTurma', id=linha.id)}}">Excluir</a></td>
+                    <td><a href="{{url_for('VisualizarTurma', id=linha.id)}}">Visualizar</a></td>
+                    
+                    
+                </tr>
+                {% endfor %}
+    
+            </body>
+        </table>
+
+        {% else %}
+
+        <form action="" method="post" class="row mt-4 p-4 round border shadow">
+            <h3>Faça o seu login</h3>
+
+        {{form.csrf_token}}
+
+        {{form.email.label()}}
+        {{form.email(class="form-control")}}
+
+        {{form.senha.label()}}
+        {{form.senha(class="form-control")}}
+
+        {{form.btnSubmit(class="btn btn-primary mt-3")}}
+
+    </form>
+
+        
+        {%endif%}
+        
+
+    </div>
+</div>
+
+{% endblock %}
